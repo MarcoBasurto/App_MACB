@@ -12,46 +12,44 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0d0d0d;
-  --surface: #161616;
-  --card: #1c1c1c;
-  --card2: #222222;
-  --border: #2e2e2e;
-  --accent: #e8ff00;
-  --accent-dim: rgba(232,255,0,0.12);
-  --orange: #ff6b35;
-  --orange-dim: rgba(255,107,53,0.12);
-  --blue: #60a5fa;
-  --blue-dim: rgba(96,165,250,0.12);
-  --green: #4ade80;
-  --green-dim: rgba(74,222,128,0.12);
-  --red: #f87171;
-  --text: #f0f0f0;
-  --muted: #666;
-  --muted2: #444;
-  --r: 12px;
-  --nav-h: 64px;
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
-}
+:root{--bg:#0d0d0d;--surface:#161616;--card:#1c1c1c;--border:#2e2e2e;--accent:#e8ff00;--accent-dim:rgba(232,255,0,0.12);--orange:#ff6b35;--orange-dim:rgba(255,107,53,0.12);--blue:#60a5fa;--blue-dim:rgba(96,165,250,0.12);--green:#4ade80;--green-dim:rgba(74,222,128,0.12);--red:#f87171;--text:#f0f0f0;--muted:#666;--muted2:#444;--r:12px;--nav-h:64px;--safe-bottom:env(safe-area-inset-bottom,0px);}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;}
-
-/* ── LAYOUT ── */
 #app{display:flex;flex-direction:column;height:100%;max-width:480px;margin:0 auto;position:relative;}
 #screens{flex:1;overflow:hidden;position:relative;}
-.screen{position:absolute;inset:0;overflow-y:auto;padding:16px 14px calc(var(--nav-h) + var(--safe-bottom) + 16px);display:none;animation:fadeIn .18s ease;}
+.screen{position:absolute;inset:0;overflow-y:auto;padding:16px 14px calc(var(--nav-h) + var(--safe-bottom) + 16px);display:none;animation:fadeIn .2s ease;}
 .screen.active{display:block;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-/* ── BOTTOM NAV ── */
+/* ONBOARDING */
+#s-onboard{padding:0!important;}
+.ob-wrap{min-height:100%;display:flex;flex-direction:column;padding:40px 24px 40px;}
+.ob-logo{width:72px;height:72px;background:#1a1a00;border:2px solid var(--accent);border-radius:20px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--accent);margin-bottom:32px;}
+.ob-title{font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:.95;letter-spacing:2px;margin-bottom:12px;}
+.ob-title span{color:var(--accent);}
+.ob-sub{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:28px;}
+.ob-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px;}
+.ob-stat{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px 8px;text-align:center;}
+.ob-num{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--accent);line-height:1;}
+.ob-lbl{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:3px;}
+.ob-today{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:24px;}
+.ob-today-lbl{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1.5px;margin-bottom:8px;}
+.ob-today-focus{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--accent);}
+.ob-today-sub{font-size:12px;color:var(--muted);margin-top:4px;}
+.ob-btn{width:100%;padding:16px;background:var(--accent);color:#000;border:none;border-radius:var(--r);font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;cursor:pointer;margin-bottom:10px;transition:opacity .15s;}
+.ob-btn:active{opacity:.7;}
+.ob-skip{width:100%;padding:12px;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:var(--r);font-family:'DM Mono',monospace;font-size:12px;cursor:pointer;}
+
+/* NAV */
 #nav{position:absolute;bottom:0;left:0;right:0;height:calc(var(--nav-h) + var(--safe-bottom));background:var(--surface);border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:var(--safe-bottom);}
-.nav-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--muted);transition:color .15s;padding:8px 0;border:none;background:none;}
+.nav-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--muted);transition:color .15s;padding:8px 0;border:none;background:none;position:relative;}
 .nav-btn.active{color:var(--accent);}
 .nav-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .nav-btn span{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.5px;}
+.nav-badge{position:absolute;top:6px;right:calc(50% - 20px);background:var(--red);color:#000;font-family:'DM Mono',monospace;font-size:8px;font-weight:700;padding:1px 5px;border-radius:8px;min-width:14px;text-align:center;display:none;}
+.nav-badge.show{display:block;}
 
-/* ── COMMON ── */
+/* COMMON */
 .page-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;margin-bottom:4px;}
 .page-title span{color:var(--accent);}
 .page-sub{font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:1px;margin-bottom:18px;}
@@ -62,99 +60,129 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .tag-diet{background:var(--green-dim);color:var(--green);}
 .tag-habit{background:var(--blue-dim);color:var(--blue);}
 .tag-extra{background:var(--accent-dim);color:var(--accent);}
-.btn{width:100%;padding:13px;background:var(--accent);color:#000;border:none;border-radius:var(--r);font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;margin-top:8px;transition:opacity .15s;}
-.btn:active{opacity:.7;}
+.btn{width:100%;padding:13px;background:var(--accent);color:#000;border:none;border-radius:var(--r);font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;margin-top:8px;transition:all .15s;}
+.btn:active{opacity:.7;transform:scale(.98);}
 .btn-outline{background:transparent;color:var(--accent);border:1.5px solid var(--accent);}
 .divider{border:none;border-top:1px solid var(--border);margin:12px 0;}
 
-/* ── HOME ── */
+/* HOME */
 .home-header{background:linear-gradient(135deg,#161600,#1a1a00);border:1px solid #2a2a00;border-radius:var(--r);padding:16px;margin-bottom:12px;position:relative;overflow:hidden;}
 .home-header::after{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:radial-gradient(circle,rgba(232,255,0,.15) 0%,transparent 70%);}
 .greeting{font-size:12px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:1px;}
 .greeting-name{font-family:'Bebas Neue',sans-serif;font-size:34px;line-height:1;letter-spacing:2px;margin:2px 0 6px;}
 .greeting-name span{color:var(--accent);}
-.day-focus-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#000;padding:5px 12px;border-radius:20px;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;}
-
+.focus-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#000;padding:5px 12px;border-radius:20px;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;}
+.streak-row{background:linear-gradient(90deg,#1a0d00,#200f00);border:1px solid #3a2000;border-radius:var(--r);padding:12px 16px;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.streak-num{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--orange);line-height:1;}
+.streak-info{flex:1;}
+.streak-lbl{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;margin-top:2px;}
+.streak-best{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);text-align:right;line-height:1.6;}
 .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
 .stat-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:12px 8px;text-align:center;}
 .stat-val{font-family:'Bebas Neue',sans-serif;font-size:26px;line-height:1;display:block;}
-.stat-val.y{color:var(--accent);}
-.stat-val.o{color:var(--orange);}
-.stat-val.g{color:var(--green);}
 .stat-lbl{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:3px;}
-
-.progress-ring-wrap{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:12px;}
+.ring-wrap{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:12px;}
 .ring-info{flex:1;}
 .ring-label{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;margin-bottom:4px;}
 .ring-sub{font-size:12px;color:var(--muted);}
 svg.ring{width:64px;height:64px;flex-shrink:0;}
 .ring-track{fill:none;stroke:var(--border);stroke-width:6;}
-.ring-fill{fill:none;stroke:var(--accent);stroke-width:6;stroke-linecap:round;transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset .5s ease;}
+.ring-fill{fill:none;stroke:var(--accent);stroke-width:6;stroke-linecap:round;transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset .6s ease;}
 .ring-text{font-family:'Bebas Neue',sans-serif;font-size:14px;fill:var(--accent);}
+.plan-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:12px;}
+.plan-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
+.plan-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;}
+.plan-frac{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);}
+.prog-bar{background:var(--border);border-radius:4px;height:6px;overflow:hidden;margin-bottom:5px;}
+.prog-fill{height:100%;background:var(--accent);border-radius:4px;transition:width .5s;}
+.prog-labels{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
 
-/* ── CHECKLIST ── */
+/* CHECKLIST */
 .day-pills{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
 .day-pills::-webkit-scrollbar{display:none;}
 .day-pill{flex-shrink:0;padding:6px 12px;border-radius:20px;border:1.5px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;color:var(--muted);background:var(--card);transition:all .15s;white-space:nowrap;}
 .day-pill.active{background:var(--accent);color:#000;border-color:var(--accent);}
 .day-pill.done{border-color:var(--green);color:var(--green);}
-
-.check-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #222;cursor:pointer;transition:opacity .1s;}
+.check-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #222;cursor:pointer;transition:all .12s;}
 .check-item:last-child{border-bottom:none;}
 .check-item:active{opacity:.6;}
-.chk{width:24px;height:24px;border:2px solid var(--border);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .15s;}
-.check-item.done .chk{background:var(--green);border-color:var(--green);color:#000;}
+.chk{width:24px;height:24px;border:2px solid var(--border);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .2s;}
+.check-item.done .chk{background:var(--green);border-color:var(--green);color:#000;transform:scale(1.1);}
 .chk-text{flex:1;font-size:13px;line-height:1.4;}
 .check-item.done .chk-text{color:var(--muted);text-decoration:line-through;}
-
 .section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;padding:10px 0 6px;}
+.day-done-banner{background:linear-gradient(90deg,#0a1a0a,#0d200d);border:1px solid #1a4a1a;border-radius:var(--r);padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:12px;animation:popIn .3s ease;}
+@keyframes popIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:none}}
 
-/* ── PESOS ── */
+/* PESOS */
 .exercise-list{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;}
-.ex-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
-.ex-header{padding:10px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+.ex-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:border-color .2s;}
+.ex-card.saved{border-color:var(--green);}
+.ex-header{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
 .ex-name{font-weight:600;font-size:13px;}
-.ex-best{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);}
+.ex-meta{font-family:'DM Mono',monospace;font-size:11px;}
+.ex-meta.has{color:var(--green);}
+.ex-meta.empty{color:var(--muted);}
 .ex-body{padding:0 14px 12px;display:none;}
 .ex-body.open{display:block;}
-.set-row{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-bottom:6px;align-items:center;}
+.set-row{display:grid;grid-template-columns:55px 1fr 1fr;gap:8px;margin-bottom:6px;align-items:center;}
 .set-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);}
-.num-input{background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:8px 10px;color:var(--text);font-family:'DM Mono',monospace;font-size:14px;width:100%;text-align:center;outline:none;}
+.num-input{background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:8px 10px;color:var(--text);font-family:'DM Mono',monospace;font-size:14px;width:100%;text-align:center;outline:none;transition:border-color .15s;}
 .num-input:focus{border-color:var(--accent);}
 .add-set-btn{background:var(--accent-dim);color:var(--accent);border:none;border-radius:6px;padding:6px 10px;font-size:18px;cursor:pointer;line-height:1;}
 .history-mini{margin-top:8px;padding-top:8px;border-top:1px solid var(--border);}
-.history-row{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);padding:2px 0;}
+.history-row{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);padding:3px 0;}
 .history-row span:last-child{color:var(--text);}
+.save-feedback{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:200;opacity:0;pointer-events:none;transition:opacity .2s;}
+.save-feedback.show{opacity:1;pointer-events:all;}
+.sf-card{background:var(--card);border:2px solid var(--green);border-radius:20px;padding:32px 40px;text-align:center;animation:popIn .3s ease;}
+.sf-icon{font-size:52px;margin-bottom:12px;}
+.sf-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--green);letter-spacing:2px;margin-bottom:6px;}
+.sf-sub{font-size:13px;color:var(--muted);}
 
-/* ── MEDICIONES ── */
+/* MEDIDAS */
 .measure-week-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
 .measure-week-btn{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:7px 14px;color:var(--text);font-family:'DM Mono',monospace;font-size:12px;cursor:pointer;}
 .measure-week-label{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;}
 .measure-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
 .measure-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:12px;}
 .measure-lbl{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;}
-.measure-val-big{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;color:var(--accent);margin-bottom:4px;}
+.measure-big{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;color:var(--accent);margin-bottom:2px;}
+.measure-diff{font-family:'DM Mono',monospace;font-size:10px;margin-bottom:3px;}
+.diff-up{color:var(--green);}
+.diff-dn{color:var(--red);}
 .measure-unit{font-size:10px;color:var(--muted);}
-.measure-chart{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:12px;}
-.mini-chart{width:100%;height:80px;}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:12px;}
+.mini-chart{width:100%;height:90px;}
 .chart-path{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;}
 .chart-area{fill:rgba(232,255,0,0.06);}
 .chart-dot{fill:var(--accent);}
+.empty-state{text-align:center;padding:24px 16px;}
+.empty-icon{font-size:36px;margin-bottom:10px;}
+.empty-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;margin-bottom:6px;}
+.empty-sub{font-size:12px;color:var(--muted);line-height:1.5;}
 
-/* ── DIETA / MENÚ ── */
-.menu-meal{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:10px;}
-.meal-time-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-dim);color:var(--accent);padding:3px 10px;border-radius:12px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;margin-bottom:8px;}
+/* DIETA */
+.diet-prog-row{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.diet-prog-bar-wrap{flex:1;background:var(--border);border-radius:4px;height:6px;overflow:hidden;}
+.diet-prog-bar{height:100%;background:var(--green);border-radius:4px;transition:width .4s;}
+.diet-prog-lbl{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap;}
+.menu-meal{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:10px;transition:border-color .2s;}
+.menu-meal.meal-done{border-color:var(--green);}
+.meal-row{display:flex;align-items:flex-start;gap:10px;}
+.meal-time-badge{display:inline-flex;align-items:center;background:var(--accent-dim);color:var(--accent);padding:3px 10px;border-radius:12px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;margin-bottom:8px;}
 .meal-title{font-weight:600;font-size:14px;margin-bottom:4px;}
 .meal-desc{font-size:12px;color:var(--muted);line-height:1.5;}
-.meal-macros{display:flex;gap:10px;margin-top:8px;}
+.meal-macros{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
 .macro-chip{font-family:'DM Mono',monospace;font-size:10px;padding:2px 8px;border-radius:10px;}
 .mc-p{background:var(--green-dim);color:var(--green);}
 .mc-c{background:var(--orange-dim);color:var(--orange);}
 .mc-k{background:var(--blue-dim);color:var(--blue);}
+.meal-chk{flex-shrink:0;width:32px;height:32px;border-radius:50%;border:2px solid var(--border);background:transparent;color:var(--muted);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;margin-top:2px;}
+.meal-chk.done{background:var(--green);border-color:var(--green);color:#000;}
 
-/* ── NOTIFICACIONES ── */
+/* NOTIF */
 .notif-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;}
-.notif-icon{font-size:24px;flex-shrink:0;}
 .notif-info{flex:1;}
 .notif-title{font-weight:600;font-size:13px;}
 .notif-time{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-top:2px;}
@@ -163,11 +191,11 @@ svg.ring{width:64px;height:64px;flex-shrink:0;}
 .toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;background:white;border-radius:50%;transition:transform .2s;}
 .toggle.on::after{transform:translateX(20px);}
 
-/* ── TOAST ── */
+/* TOAST */
 #toast{position:fixed;bottom:calc(var(--nav-h) + 16px);left:50%;transform:translateX(-50%) translateY(40px);background:var(--green);color:#000;padding:10px 20px;border-radius:8px;font-family:'DM Mono',monospace;font-size:12px;z-index:99;transition:transform .25s,opacity .25s;opacity:0;white-space:nowrap;pointer-events:none;}
 #toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 
-/* ── INSTALL BANNER ── */
+/* INSTALL */
 #installBanner{display:none;position:fixed;top:0;left:0;right:0;background:#1a1a00;border-bottom:1px solid var(--accent);padding:12px 16px;z-index:100;align-items:center;gap:12px;}
 #installBanner p{flex:1;font-size:12px;color:#ccc;line-height:1.4;}
 #installBanner p strong{color:var(--accent);}
@@ -177,43 +205,68 @@ svg.ring{width:64px;height:64px;flex-shrink:0;}
 </head>
 <body>
 
-<!-- INSTALL BANNER -->
 <div id="installBanner">
-  <p>📲 <strong>Instala la app:</strong> toca los 3 puntos del navegador → "Agregar a pantalla de inicio"</p>
+  <p>📲 <strong>Instalar app:</strong> 3 puntos → "Agregar a pantalla de inicio"</p>
   <button class="install-btn" id="installBtn">INSTALAR</button>
   <button class="close-banner" onclick="document.getElementById('installBanner').style.display='none'">×</button>
+</div>
+
+<div class="save-feedback" id="saveFeedback" onclick="this.classList.remove('show')">
+  <div class="sf-card">
+    <div class="sf-icon">💪</div>
+    <div class="sf-title">SESIÓN GUARDADA</div>
+    <div class="sf-sub" id="sfDetail">Pesos registrados correctamente</div>
+  </div>
 </div>
 
 <div id="app">
   <div id="screens">
 
-    <!-- ══ SCREEN: HOME ══ -->
-    <div class="screen active" id="s-home">
+    <!-- ONBOARDING -->
+    <div class="screen active" id="s-onboard">
+      <div class="ob-wrap">
+        <div class="ob-logo">M</div>
+        <div class="ob-title">PLAN<br><span>MUSCULAR</span></div>
+        <div class="ob-sub">Tu app personal de gym, dieta y progreso. Plan de 6 meses: <strong style="color:var(--text)">72 kg → 80 kg.</strong></div>
+        <div class="ob-stats">
+          <div class="ob-stat"><div class="ob-num">26</div><div class="ob-lbl">SEMANAS</div></div>
+          <div class="ob-stat"><div class="ob-num">4</div><div class="ob-lbl">DÍAS/SEM</div></div>
+          <div class="ob-stat"><div class="ob-num">160g</div><div class="ob-lbl">PROTEÍNA</div></div>
+        </div>
+        <div class="ob-today">
+          <div class="ob-today-lbl">TU PLAN DE HOY</div>
+          <div class="ob-today-focus" id="obFocus">CARGANDO...</div>
+          <div class="ob-today-sub">Gym 5:00 AM · Creatina 4:30 AM</div>
+        </div>
+        <button class="ob-btn" onclick="startApp()">EMPEZAR SEMANA 💪</button>
+        <button class="ob-skip" onclick="startApp()">Ya conozco la app, ir directo</button>
+      </div>
+    </div>
+
+    <!-- HOME -->
+    <div class="screen" id="s-home">
       <div class="home-header">
         <div class="greeting" id="greetTime">BUENOS DÍAS</div>
         <div class="greeting-name">MARCO <span>BASURTO</span></div>
-        <div class="day-focus-badge" id="todayFocus">💪 CARGANDO...</div>
+        <div class="focus-badge" id="todayFocus">💪</div>
       </div>
-
+      <div class="streak-row">
+        <div style="font-size:30px;">🔥</div>
+        <div class="streak-info">
+          <div class="streak-num" id="streakNum">0</div>
+          <div class="streak-lbl">DÍAS SEGUIDOS COMPLETADOS</div>
+        </div>
+        <div class="streak-best" id="streakBest">MEJOR:<br>0 días</div>
+      </div>
       <div class="stat-row">
-        <div class="stat-box">
-          <span class="stat-val y" id="homeGym">0/4</span>
-          <div class="stat-lbl">GYM HOY</div>
-        </div>
-        <div class="stat-box">
-          <span class="stat-val o" id="homeDiet">0%</span>
-          <div class="stat-lbl">DIETA</div>
-        </div>
-        <div class="stat-box">
-          <span class="stat-val g" id="homeCreat">—</span>
-          <div class="stat-lbl">CREATINA</div>
-        </div>
+        <div class="stat-box"><span class="stat-val" style="color:var(--accent)" id="homeGym">0/4</span><div class="stat-lbl">GYM SEM</div></div>
+        <div class="stat-box"><span class="stat-val" style="color:var(--orange)" id="homeDiet">0%</span><div class="stat-lbl">DIETA HOY</div></div>
+        <div class="stat-box"><span class="stat-val" id="homeCreat" style="color:var(--red)">✗</span><div class="stat-lbl">CREATINA</div></div>
       </div>
-
-      <div class="progress-ring-wrap">
+      <div class="ring-wrap">
         <div class="ring-info">
           <div class="ring-label">CONSTANCIA SEMANAL</div>
-          <div class="ring-sub" id="ringDesc">0 de 18 tareas completadas esta semana</div>
+          <div class="ring-sub" id="ringDesc">0 tareas completadas</div>
         </div>
         <svg class="ring" viewBox="0 0 64 64">
           <circle class="ring-track" cx="32" cy="32" r="27"/>
@@ -221,7 +274,25 @@ svg.ring{width:64px;height:64px;flex-shrink:0;}
           <text class="ring-text" x="32" y="37" text-anchor="middle" id="ringPct">0%</text>
         </svg>
       </div>
-
+      <div class="plan-card">
+        <div class="plan-top">
+          <div class="plan-title">📅 SEMANA DEL PLAN</div>
+          <div class="plan-frac" id="planFrac">1 / 26</div>
+        </div>
+        <div class="prog-bar"><div class="prog-fill" id="planFill" style="width:4%"></div></div>
+        <div class="prog-labels"><span>INICIO</span><span id="planPct">4%</span><span>META 80 kg</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">🎯 META DE PESO</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-size:13px;color:var(--muted)">72 kg → 78–80 kg</span>
+          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent)" id="pesoActual">Actual: — kg</span>
+        </div>
+        <div style="background:var(--border);border-radius:4px;height:8px;overflow:hidden;">
+          <div id="goalBar" style="height:100%;background:var(--accent);border-radius:4px;width:0%;transition:width .5s;"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:4px;"><span>72 kg</span><span>80 kg</span></div>
+      </div>
       <div class="card">
         <div class="card-title">⚡ ACCIONES RÁPIDAS</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
@@ -231,89 +302,76 @@ svg.ring{width:64px;height:64px;flex-shrink:0;}
           <button class="btn btn-outline" style="margin:0;font-size:14px;" onclick="goTo('s-medidas')">📏 MEDIDAS</button>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-title">🎯 META GLOBAL</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <span style="font-size:13px;color:var(--muted)">72 kg → 78-80 kg</span>
-          <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent)" id="pesoActual">Peso actual: — kg</span>
-        </div>
-        <div style="background:var(--border);border-radius:4px;height:8px;overflow:hidden;">
-          <div id="goalBar" style="height:100%;background:var(--accent);border-radius:4px;width:0%;transition:width .5s;"></div>
-        </div>
-        <div style="display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:4px;">
-          <span>72 kg</span><span>80 kg</span>
-        </div>
-      </div>
     </div>
 
-    <!-- ══ SCREEN: CHECKLIST ══ -->
+    <!-- CHECKLIST -->
     <div class="screen" id="s-check">
       <div class="page-title">CHECK<span>LIST</span></div>
       <div class="page-sub" id="checkDateLabel">SEMANA 1</div>
-
       <div class="day-pills" id="dayPills"></div>
       <div id="checkContent"></div>
     </div>
 
-    <!-- ══ SCREEN: PESOS ══ -->
+    <!-- PESOS -->
     <div class="screen" id="s-pesos">
       <div class="page-title">REGISTRO <span>PESOS</span></div>
       <div class="page-sub" id="pesosDay">HOY</div>
-
       <div class="day-pills" id="pesosDayPills"></div>
-
       <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
-        <span style="font-size:18px;">💡</span>
-        <span style="font-size:12px;color:var(--muted);">Registra el peso máximo que lograste. <span style="color:var(--accent);">Aumenta 2.5–5 kg/semana</span> en compuestos.</span>
+        <span style="font-size:16px;">💡</span>
+        <span style="font-size:12px;color:var(--muted);">Registra el peso máximo. <span style="color:var(--accent);">+2.5–5 kg/semana</span> en compuestos.</span>
       </div>
-
       <div class="exercise-list" id="exerciseList"></div>
-      <button class="btn" onclick="savePesos()">GUARDAR SESIÓN</button>
+      <button class="btn" onclick="savePesos()">💾 GUARDAR SESIÓN</button>
     </div>
 
-    <!-- ══ SCREEN: MEDIDAS ══ -->
+    <!-- MEDIDAS -->
     <div class="screen" id="s-medidas">
       <div class="page-title">MEDI<span>CIONES</span></div>
       <div class="page-sub">REGISTRO SEMANAL</div>
-
       <div class="measure-week-nav">
         <button class="measure-week-btn" onclick="changeMedWeek(-1)">← ANT</button>
         <div class="measure-week-label" id="medWeekLabel">SEM 1</div>
         <button class="measure-week-btn" onclick="changeMedWeek(1)">SIG →</button>
       </div>
-
       <div class="measure-grid">
         <div class="measure-item">
           <div class="measure-lbl">PESO</div>
-          <div class="measure-val-big" id="mDispPeso">—</div>
+          <div class="measure-big" id="mDispPeso">—</div>
+          <div class="measure-diff" id="mDiffPeso"></div>
           <div class="measure-unit">kg</div>
           <input type="number" class="num-input" id="mPeso" placeholder="72.0" step="0.1" style="margin-top:8px;" oninput="saveMedidas()">
         </div>
         <div class="measure-item">
           <div class="measure-lbl">PECHO</div>
-          <div class="measure-val-big" id="mDispPecho">—</div>
+          <div class="measure-big" id="mDispPecho">—</div>
+          <div class="measure-diff" id="mDiffPecho"></div>
           <div class="measure-unit">cm</div>
           <input type="number" class="num-input" id="mPecho" placeholder="—" step="0.5" style="margin-top:8px;" oninput="saveMedidas()">
         </div>
         <div class="measure-item">
           <div class="measure-lbl">CINTURA</div>
-          <div class="measure-val-big" id="mDispCintura">—</div>
+          <div class="measure-big" id="mDispCintura">—</div>
+          <div class="measure-diff" id="mDiffCintura"></div>
           <div class="measure-unit">cm</div>
           <input type="number" class="num-input" id="mCintura" placeholder="—" step="0.5" style="margin-top:8px;" oninput="saveMedidas()">
         </div>
         <div class="measure-item">
           <div class="measure-lbl">BRAZO</div>
-          <div class="measure-val-big" id="mDispBrazo">—</div>
+          <div class="measure-big" id="mDispBrazo">—</div>
+          <div class="measure-diff" id="mDiffBrazo"></div>
           <div class="measure-unit">cm flex.</div>
           <input type="number" class="num-input" id="mBrazo" placeholder="—" step="0.5" style="margin-top:8px;" oninput="saveMedidas()">
         </div>
       </div>
-
-      <!-- Mini chart peso -->
-      <div class="measure-chart">
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1.5px;margin-bottom:8px;">PROGRESO DE PESO — 8 SEMANAS</div>
-        <svg class="mini-chart" id="weightChart" viewBox="0 0 300 80" preserveAspectRatio="none">
+      <div class="chart-card">
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1.5px;margin-bottom:8px;">PROGRESO PESO — 8 SEMANAS</div>
+        <div id="chartEmpty" class="empty-state" style="display:none;">
+          <div class="empty-icon">📈</div>
+          <div class="empty-title">SIN DATOS AÚN</div>
+          <div class="empty-sub">Registra tu peso esta semana para ver tu progreso hacia los 80 kg</div>
+        </div>
+        <svg class="mini-chart" id="weightChart" viewBox="0 0 300 90" preserveAspectRatio="none">
           <path id="chartArea" class="chart-area" d=""/>
           <path id="chartLine" class="chart-path" d=""/>
           <g id="chartDots"></g>
@@ -322,143 +380,65 @@ svg.ring{width:64px;height:64px;flex-shrink:0;}
       </div>
     </div>
 
-    <!-- ══ SCREEN: DIETA ══ -->
+    <!-- DIETA -->
     <div class="screen" id="s-dieta">
       <div class="page-title">MENÚ <span>DIARIO</span></div>
       <div class="page-sub">2,500 KCAL · 160G PROT</div>
-
+      <div class="diet-prog-row">
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap;">COMIDAS HOY</div>
+        <div class="diet-prog-bar-wrap"><div class="diet-prog-bar" id="dietProgBar" style="width:0%"></div></div>
+        <div class="diet-prog-lbl" id="dietProgLbl">0/6</div>
+      </div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px;">
-        <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:10px;text-align:center;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--green);">160g</div>
-          <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">PROTEÍNA</div>
-        </div>
-        <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:10px;text-align:center;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--orange);">260g</div>
-          <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">CARBOS</div>
-        </div>
-        <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:10px;text-align:center;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--blue);">65g</div>
-          <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">GRASAS</div>
-        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:10px;text-align:center;"><div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--green);">160g</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">PROTEÍNA</div></div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:10px;text-align:center;"><div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--orange);">260g</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">CARBOS</div></div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:10px;text-align:center;"><div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--blue);">65g</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">GRASAS</div></div>
       </div>
-
-      <div class="menu-meal">
-        <div class="meal-time-badge">⚡ 4:30 AM — PRE-ENTRENO</div>
-        <div class="meal-title">Avena + Plátano + Creatina</div>
-        <div class="meal-desc">2 cdas avena con leche o agua · 1 plátano · <strong style="color:var(--accent)">3–5g creatina monohidratada</strong><br><span style="color:var(--muted2)">Prep: 3 min · Sin cocinar</span></div>
-        <div class="meal-macros">
-          <span class="macro-chip mc-p">8g prot</span>
-          <span class="macro-chip mc-c">45g carbs</span>
-          <span class="macro-chip mc-k">280 kcal</span>
-        </div>
-      </div>
-
-      <div class="menu-meal">
-        <div class="meal-time-badge">🏋️ 6:30 AM — POST-ENTRENO</div>
-        <div class="meal-title">4 Huevos + Tortillas + Leche</div>
-        <div class="meal-desc">4 huevos revueltos o estrellados · 2 tortillas de maíz · 1 vaso leche semidescremada<br><span style="color:var(--muted2)">Prep: 10 min · Comida más importante del día</span></div>
-        <div class="meal-macros">
-          <span class="macro-chip mc-p">42g prot</span>
-          <span class="macro-chip mc-c">38g carbs</span>
-          <span class="macro-chip mc-k">580 kcal</span>
-        </div>
-      </div>
-
-      <div class="menu-meal">
-        <div class="meal-time-badge">🍎 10:30 AM — SNACK OFICINA</div>
-        <div class="meal-title">Yogurt Griego + Fruta + Cacahuates</div>
-        <div class="meal-desc">1 yogurt griego natural (sin azúcar) · 1 fruta · puño de cacahuates<br><span style="color:var(--muted2)">Sin prep · Llévalo en bolsa</span></div>
-        <div class="meal-macros">
-          <span class="macro-chip mc-p">22g prot</span>
-          <span class="macro-chip mc-c">28g carbs</span>
-          <span class="macro-chip mc-k">380 kcal</span>
-        </div>
-      </div>
-
-      <div class="menu-meal">
-        <div class="meal-time-badge">🍗 2:00 PM — COMIDA PRINCIPAL</div>
-        <div class="meal-title">Pollo / Carne Molida + Arroz o Frijoles</div>
-        <div class="meal-desc">150g pollo · carne molida · o milanesa · 1 taza arroz o frijoles · verduras<br><span style="color:var(--muted2)">Rota proteínas: pollo, carne, huevo</span></div>
-        <div class="meal-macros">
-          <span class="macro-chip mc-p">45g prot</span>
-          <span class="macro-chip mc-c">60g carbs</span>
-          <span class="macro-chip mc-k">620 kcal</span>
-        </div>
-      </div>
-
-      <div class="menu-meal">
-        <div class="meal-time-badge">🥜 5:30 PM — SNACK VESPERTINO</div>
-        <div class="meal-title">Pan Integral + Crema de Cacahuate</div>
-        <div class="meal-desc">2 rebanadas pan integral · 2 cdas crema de cacahuate · 1 fruta<br><span style="color:var(--muted2)">Sin prep · 2 min</span></div>
-        <div class="meal-macros">
-          <span class="macro-chip mc-p">14g prot</span>
-          <span class="macro-chip mc-c">48g carbs</span>
-          <span class="macro-chip mc-k">400 kcal</span>
-        </div>
-      </div>
-
-      <div class="menu-meal">
-        <div class="meal-time-badge">🌙 8:00 PM — CENA</div>
-        <div class="meal-title">Proteína + Carbohidrato + Ensalada</div>
-        <div class="meal-desc">200g pollo · carne molida · o 5 claras de huevo · papa o tortillas · ensalada rápida<br><span style="color:var(--muted2)">Prep: 15 min · Recuperación nocturna</span></div>
-        <div class="meal-macros">
-          <span class="macro-chip mc-p">40g prot</span>
-          <span class="macro-chip mc-c">42g carbs</span>
-          <span class="macro-chip mc-k">540 kcal</span>
-        </div>
-      </div>
-
+      <div id="mealList"></div>
       <div class="card" style="margin-top:4px;">
-        <div class="card-title">🛒 LISTA DE COMPRAS SEMANAL</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.8;">
-          Huevos (30 pzas) · Pechuga pollo 1 kg · Carne molida 500g · Arroz · Frijoles · Tortillas · Pan integral · Yogurt griego · Avena · Plátanos · Manzanas · Cacahuates · Crema cacahuate · Leche · Papas
-          <div style="margin-top:8px;color:var(--accent);font-family:'DM Mono',monospace;font-size:11px;">~ $420–560 MXN / SEMANA</div>
-        </div>
+        <div class="card-title">🛒 LISTA SEMANAL</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.8;">Huevos (30) · Pollo 1kg · Carne molida 500g · Arroz · Frijoles · Tortillas · Pan integral · Yogurt griego · Avena · Plátanos · Manzanas · Cacahuates · Crema cacahuate · Leche · Papas<div style="margin-top:8px;color:var(--accent);font-family:'DM Mono',monospace;font-size:11px;">~ $420–560 MXN / SEMANA</div></div>
       </div>
     </div>
 
-    <!-- ══ SCREEN: CONFIGURACIÓN / NOTIFICACIONES ══ -->
+    <!-- CONFIG -->
     <div class="screen" id="s-config">
       <div class="page-title">RECORDA<span>TORIOS</span></div>
       <div class="page-sub">CONFIGURA TUS ALERTAS</div>
-
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:12px;margin-bottom:14px;font-size:12px;color:var(--muted);">
-        ⚠️ Activa los recordatorios y el navegador te pedirá permiso para notificaciones. <span style="color:var(--accent);">Acepta para recibirlas.</span>
-      </div>
-
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:12px;margin-bottom:14px;font-size:12px;color:var(--muted);">⚠️ Activa los recordatorios y acepta el permiso. <span style="color:var(--accent);">Funciona mejor con la app instalada.</span></div>
       <div id="notifList"></div>
-
       <button class="btn" onclick="requestNotifPermission()">ACTIVAR NOTIFICACIONES</button>
-
       <div class="divider"></div>
-      <div class="card" style="margin-top:4px;">
-        <div class="card-title">📊 SOBRE TU PLAN</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.8;">
-          <strong style="color:var(--text);">Programa:</strong> PPL — Push/Pull/Legs<br>
-          <strong style="color:var(--text);">Frecuencia:</strong> 4 días/semana<br>
-          <strong style="color:var(--text);">Gym:</strong> 5:00 AM<br>
-          <strong style="color:var(--text);">Creatina:</strong> 3–5g diarios (4:30 AM)<br>
-          <strong style="color:var(--text);">Meta:</strong> 72 kg → 78–80 kg en 6 meses<br>
-          <strong style="color:var(--text);">Kcal:</strong> 2,500/día · 160g proteína
+      <div class="card">
+        <div class="card-title">🔄 SEMANA ACTUAL DEL PLAN</div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 16px;color:var(--text);font-family:'DM Mono',monospace;font-size:14px;cursor:pointer;" onclick="checkWeek=Math.max(1,checkWeek-1);localStorage.setItem('cw',checkWeek);renderHome();">−</button>
+          <div style="flex:1;text-align:center;"><div style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--accent);" id="cfgWeek">1</div><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">DE 26 SEMANAS</div></div>
+          <button style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 16px;color:var(--text);font-family:'DM Mono',monospace;font-size:14px;cursor:pointer;" onclick="checkWeek=Math.min(26,checkWeek+1);localStorage.setItem('cw',checkWeek);renderHome();">+</button>
         </div>
+      </div>
+      <div class="card">
+        <div class="card-title">📊 MI PLAN</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.9;"><strong style="color:var(--text);">Programa:</strong> PPL Push/Pull/Legs<br><strong style="color:var(--text);">Gym:</strong> Lun · Mar · Jue · Vie · 5:00 AM<br><strong style="color:var(--text);">Creatina:</strong> 3–5g diarios · 4:30 AM<br><strong style="color:var(--text);">Meta:</strong> 72 kg → 78–80 kg · 6 meses<br><strong style="color:var(--text);">Calorías:</strong> 2,500/día · 160g proteína</div>
       </div>
     </div>
 
-  </div><!-- /screens -->
+  </div>
 
-  <!-- BOTTOM NAV -->
   <nav id="nav">
-    <button class="nav-btn active" onclick="goTo('s-home')" id="nb-home">
+    <button class="nav-btn" onclick="goTo('s-home')" id="nb-home">
       <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       <span>INICIO</span>
     </button>
     <button class="nav-btn" onclick="goTo('s-check')" id="nb-check">
       <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
       <span>CHECK</span>
+      <div class="nav-badge" id="badge-check">0</div>
     </button>
     <button class="nav-btn" onclick="goTo('s-pesos')" id="nb-pesos">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <span>PESOS</span>
+      <div class="nav-badge" id="badge-pesos">!</div>
     </button>
     <button class="nav-btn" onclick="goTo('s-medidas')" id="nb-medidas">
       <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
@@ -467,590 +447,303 @@ svg.ring{width:64px;height:64px;flex-shrink:0;}
     <button class="nav-btn" onclick="goTo('s-dieta')" id="nb-dieta">
       <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
       <span>DIETA</span>
+      <div class="nav-badge" id="badge-dieta">!</div>
     </button>
   </nav>
 </div>
-
-<div id="toast">✓ Guardado</div>
+<div id="toast"></div>
 
 <script>
-// ═══════════════════════════════════════════
-// DATA: CHECKLIST POR DÍA
-// ═══════════════════════════════════════════
-const DAYS_ES = ['LUN','MAR','MIÉ','JUE','VIE','SÁB','DOM'];
-const DAY_FOCUS = [
-  '🔥 PECHO · TRÍCEPS','💪 ESPALDA · BÍCEPS','🚶 DESCANSO ACTIVO',
-  '🦵 PIERNAS · GLÚTEOS','🏔 HOMBROS · CORE','💤 DESCANSO TOTAL','💤 DESCANSO TOTAL'
-];
-const GYM_DAYS = [0,1,3,4]; // lun mar jue vie
+const DAYS_ES=['LUN','MAR','MIÉ','JUE','VIE','SÁB','DOM'];
+const DAY_FOCUS=['🔥 PECHO · TRÍCEPS','💪 ESPALDA · BÍCEPS','🚶 DESCANSO ACTIVO','🦵 PIERNAS · GLÚTEOS','🏔 HOMBROS · CORE','💤 DESCANSO TOTAL','💤 DESCANSO TOTAL'];
+const GYM_DAYS=[0,1,3,4];
+const CHECKS={0:[{id:'gym_asistir',t:'Llegué al gym a las 5 AM',g:'gym'},{id:'gym_press_banca',t:'Press banca — 4×8-10',g:'gym'},{id:'gym_press_inc',t:'Press inclinado — 3×10-12',g:'gym'},{id:'gym_aperturas',t:'Aperturas polea baja — 3×12-15',g:'gym'},{id:'gym_fondos',t:'Fondos paralelas — 3×10',g:'gym'},{id:'gym_ext_tri',t:'Ext. tríceps polea — 3×12-15',g:'gym'},{id:'gym_press_fr',t:'Press francés barra Z — 3×10',g:'gym'},{id:'d_creatina',t:'Creatina 3-5g (4:30 AM)',g:'diet'},{id:'d_preent',t:'Pre-entreno: avena + plátano',g:'diet'},{id:'d_postent',t:'Post-entreno: 4 huevos + tortillas',g:'diet'},{id:'d_snack1',t:'Snack oficina: yogurt + fruta',g:'diet'},{id:'d_comida',t:'Comida: pollo/carne + arroz/frijoles',g:'diet'},{id:'d_snack2',t:'Snack: pan integral + cacahuate',g:'diet'},{id:'d_cena',t:'Cena: proteína + carbo',g:'diet'},{id:'h_agua',t:'2.5L agua mínimo',g:'habit'},{id:'h_sueno',t:'Dormí 7-8 horas',g:'habit'},{id:'h_silla',t:'Me levanté de la silla cada hora',g:'habit'}],1:[{id:'gym_asistir',t:'Llegué al gym a las 5 AM',g:'gym'},{id:'gym_jalon',t:'Jalón al pecho — 4×8-10',g:'gym'},{id:'gym_remo_b',t:'Remo con barra — 4×8-10',g:'gym'},{id:'gym_remo_m',t:'Remo mancuerna — 3×10-12',g:'gym'},{id:'gym_jalon_n',t:'Jalón agarre neutro — 3×12',g:'gym'},{id:'gym_curl_b',t:'Curl barra Z — 3×10-12',g:'gym'},{id:'gym_curl_m',t:'Curl martillo — 3×12',g:'gym'},{id:'d_creatina',t:'Creatina 3-5g (4:30 AM)',g:'diet'},{id:'d_preent',t:'Pre-entreno: avena + plátano',g:'diet'},{id:'d_postent',t:'Post-entreno: 4 huevos + tortillas',g:'diet'},{id:'d_snack1',t:'Snack oficina: yogurt + fruta',g:'diet'},{id:'d_comida',t:'Comida: pollo/carne + arroz/frijoles',g:'diet'},{id:'d_snack2',t:'Snack: pan integral + cacahuate',g:'diet'},{id:'d_cena',t:'Cena: proteína + carbo',g:'diet'},{id:'h_agua',t:'2.5L agua mínimo',g:'habit'},{id:'h_sueno',t:'Dormí 7-8 horas',g:'habit'},{id:'h_silla',t:'Me levanté de la silla cada hora',g:'habit'}],2:[{id:'d_creatina',t:'Creatina 3-5g tomada',g:'diet'},{id:'d_desayuno',t:'Desayuno con proteína',g:'diet'},{id:'d_comida',t:'Comida con proteína + carbos',g:'diet'},{id:'d_cena',t:'Cena con proteína',g:'diet'},{id:'h_caminata',t:'Caminata 20-30 min',g:'habit'},{id:'h_stretch',t:'Stretching 10 min',g:'habit'},{id:'h_agua',t:'2.5L agua mínimo',g:'habit'},{id:'h_sueno',t:'Dormí 7-8 horas',g:'habit'}],3:[{id:'gym_asistir',t:'Llegué al gym a las 5 AM',g:'gym'},{id:'gym_sentadilla',t:'Sentadilla barra — 4×8-10',g:'gym'},{id:'gym_prensa',t:'Prensa de pierna — 4×10-12',g:'gym'},{id:'gym_ext_quad',t:'Extensión cuádriceps — 3×12-15',g:'gym'},{id:'gym_curl_fem',t:'Curl femoral — 3×12',g:'gym'},{id:'gym_peso_m',t:'Peso muerto rumano — 3×10',g:'gym'},{id:'gym_gemelo',t:'Elevaciones gemelo — 4×15-20',g:'gym'},{id:'d_creatina',t:'Creatina 3-5g (4:30 AM)',g:'diet'},{id:'d_preent',t:'Pre-entreno: avena + plátano',g:'diet'},{id:'d_postent',t:'Post-entreno: 4 huevos + tortillas',g:'diet'},{id:'d_snack1',t:'Snack oficina: yogurt + fruta',g:'diet'},{id:'d_comida',t:'Comida: pollo/carne + arroz/frijoles',g:'diet'},{id:'d_snack2',t:'Snack: pan integral + cacahuate',g:'diet'},{id:'d_cena',t:'Cena: proteína + carbo',g:'diet'},{id:'h_agua',t:'2.5L agua mínimo',g:'habit'},{id:'h_sueno',t:'Dormí 7-8 horas',g:'habit'},{id:'h_silla',t:'Me levanté de la silla cada hora',g:'habit'}],4:[{id:'gym_asistir',t:'Llegué al gym a las 5 AM',g:'gym'},{id:'gym_press_mil',t:'Press militar barra — 4×8-10',g:'gym'},{id:'gym_elev_lat',t:'Elevaciones laterales — 4×12-15',g:'gym'},{id:'gym_face_pull',t:'Face pull polea — 3×15',g:'gym'},{id:'gym_elev_post',t:'Elevaciones posteriores — 3×12',g:'gym'},{id:'gym_plancha',t:'Plancha — 3×40 seg',g:'gym'},{id:'gym_crunch',t:'Crunch polea — 3×15',g:'gym'},{id:'d_creatina',t:'Creatina 3-5g (4:30 AM)',g:'diet'},{id:'d_preent',t:'Pre-entreno: avena + plátano',g:'diet'},{id:'d_postent',t:'Post-entreno: 4 huevos + tortillas',g:'diet'},{id:'d_snack1',t:'Snack oficina: yogurt + fruta',g:'diet'},{id:'d_comida',t:'Comida: pollo/carne + arroz/frijoles',g:'diet'},{id:'d_snack2',t:'Snack: pan integral + cacahuate',g:'diet'},{id:'d_cena',t:'Cena: proteína + carbo',g:'diet'},{id:'h_agua',t:'2.5L agua mínimo',g:'habit'},{id:'h_sueno',t:'Dormí 7-8 horas',g:'habit'},{id:'h_silla',t:'Me levanté de la silla cada hora',g:'habit'}],5:[{id:'d_creatina',t:'Creatina 3-5g tomada',g:'diet'},{id:'d_desayuno',t:'Desayuno completo con proteína',g:'diet'},{id:'d_comida',t:'Comida principal con proteína',g:'diet'},{id:'d_cena',t:'Cena con proteína',g:'diet'},{id:'h_agua',t:'2.5L agua mínimo',g:'habit'},{id:'h_sueno',t:'Dormí 7-8 horas',g:'habit'},{id:'e_prep',t:'Meal prep para próximos días',g:'extra'}],6:[{id:'d_creatina',t:'Creatina 3-5g tomada',g:'diet'},{id:'d_desayuno',t:'Desayuno completo con proteína',g:'diet'},{id:'d_comida',t:'Comida principal con proteína',g:'diet'},{id:'d_cena',t:'Cena con proteína',g:'diet'},{id:'h_agua',t:'2.5L agua mínimo',g:'habit'},{id:'h_sueno',t:'Dormí 7-8 horas',g:'habit'},{id:'e_prep',t:'Meal prep dominical',g:'extra'},{id:'e_pesos',t:'Anoté pesos del gym esta semana',g:'extra'}]};
+const EXERCISES={0:[{id:'press_banca',name:'Press de Banca'},{id:'press_inc',name:'Press Inclinado'},{id:'aperturas',name:'Aperturas Polea'},{id:'fondos',name:'Fondos Paralelas'},{id:'ext_triceps',name:'Extensión Tríceps'},{id:'press_frances',name:'Press Francés'}],1:[{id:'jalon',name:'Jalón al Pecho'},{id:'remo_barra',name:'Remo con Barra'},{id:'remo_mancuerna',name:'Remo Mancuerna'},{id:'jalon_neutro',name:'Jalón Neutro'},{id:'curl_barra',name:'Curl Barra Z'},{id:'curl_martillo',name:'Curl Martillo'}],3:[{id:'sentadilla',name:'Sentadilla Libre'},{id:'prensa',name:'Prensa de Pierna'},{id:'ext_quad',name:'Extensión Cuádriceps'},{id:'curl_femoral',name:'Curl Femoral'},{id:'peso_muerto_r',name:'Peso Muerto Rumano'},{id:'gemelo',name:'Elevaciones Gemelo'}],4:[{id:'press_militar',name:'Press Militar'},{id:'elev_lat',name:'Elevaciones Laterales'},{id:'face_pull',name:'Face Pull'},{id:'elev_post',name:'Elevaciones Post.'},{id:'plancha',name:'Plancha'},{id:'crunch',name:'Crunch Polea'}]};
+const MEALS=[{id:'m0',time:'⚡ 4:30 AM — PRE-ENTRENO',title:'Avena + Plátano + Creatina',desc:'2 cdas avena · 1 plátano · <strong style="color:var(--accent)">3–5g creatina</strong>',p:'8g',c:'45g',k:'280'},{id:'m1',time:'🏋️ 6:30 AM — POST-ENTRENO',title:'4 Huevos + Tortillas + Leche',desc:'4 huevos · 2 tortillas de maíz · 1 vaso leche',p:'42g',c:'38g',k:'580'},{id:'m2',time:'🍎 10:30 AM — SNACK OFICINA',title:'Yogurt Griego + Fruta + Cacahuates',desc:'1 yogurt griego · 1 fruta · puño de cacahuates',p:'22g',c:'28g',k:'380'},{id:'m3',time:'🍗 2:00 PM — COMIDA PRINCIPAL',title:'Pollo / Carne + Arroz o Frijoles',desc:'150g pollo o carne molida · arroz o frijoles · verduras',p:'45g',c:'60g',k:'620'},{id:'m4',time:'🥜 5:30 PM — SNACK VESPERTINO',title:'Pan Integral + Crema de Cacahuate',desc:'2 rebanadas pan integral · 2 cdas crema cacahuate · fruta',p:'14g',c:'48g',k:'400'},{id:'m5',time:'🌙 8:00 PM — CENA',title:'Proteína + Carbohidrato + Ensalada',desc:'200g pollo/carne/claras · papa o tortillas · ensalada',p:'40g',c:'42g',k:'540'}];
+const NOTIFS=[{id:'creatina',icon:'💊',title:'Tomar creatina',time:'4:30 AM',h:4,m:30},{id:'gym',icon:'🏋️',title:'Hora del gym',time:'5:00 AM',h:5,m:0},{id:'snack1',icon:'🍎',title:'Snack oficina',time:'10:30 AM',h:10,m:30},{id:'comida',icon:'🍗',title:'Comida principal',time:'2:00 PM',h:14,m:0},{id:'snack2',icon:'🥜',title:'Snack vespertino',time:'5:30 PM',h:17,m:30},{id:'cena',icon:'🌙',title:'Hora de cenar',time:'8:00 PM',h:20,m:0},{id:'sueno',icon:'😴',title:'Preparar para dormir',time:'9:30 PM',h:21,m:30}];
 
-const CHECKS = {
-  0:[
-    {id:'gym_asistir',t:'Llegué al gym a las 5 AM',g:'gym'},
-    {id:'gym_press_banca',t:'Press banca — 4×8-10',g:'gym'},
-    {id:'gym_press_inc',t:'Press inclinado — 3×10-12',g:'gym'},
-    {id:'gym_aperturas',t:'Aperturas polea baja — 3×12-15',g:'gym'},
-    {id:'gym_fondos',t:'Fondos paralelas — 3×10',g:'gym'},
-    {id:'gym_ext_tri',t:'Ext. tríceps polea — 3×12-15',g:'gym'},
-    {id:'gym_press_fr',t:'Press francés barra Z — 3×10',g:'gym'},
-    {id:'d_creatina',t:'Creatina 3-5g (4:30 AM)',g:'diet'},
-    {id:'d_preent',t:'Pre-entreno: avena + plátano',g:'diet'},
-    {id:'d_postent',t:'Post-entreno: 4 huevos + tortillas',g:'diet'},
-    {id:'d_snack1',t:'Snack oficina: yogurt + fruta',g:'diet'},
-    {id:'d_comida',t:'Comida: pollo/carne + arroz/frijoles',g:'diet'},
-    {id:'d_snack2',t:'Snack: pan integral + cacahuate',g:'diet'},
-    {id:'d_cena',t:'Cena: proteína + carbo',g:'diet'},
-    {id:'h_agua',t:'2.5L agua mínimo',g:'habit'},
-    {id:'h_sueno',t:'Dormí 7-8 horas',g:'habit'},
-    {id:'h_silla',t:'Me levanté de la silla cada hora',g:'habit'},
-  ],
-  1:[
-    {id:'gym_asistir',t:'Llegué al gym a las 5 AM',g:'gym'},
-    {id:'gym_jalon',t:'Jalón al pecho — 4×8-10',g:'gym'},
-    {id:'gym_remo_b',t:'Remo con barra — 4×8-10',g:'gym'},
-    {id:'gym_remo_m',t:'Remo mancuerna — 3×10-12',g:'gym'},
-    {id:'gym_jalon_n',t:'Jalón agarre neutro — 3×12',g:'gym'},
-    {id:'gym_curl_b',t:'Curl barra Z — 3×10-12',g:'gym'},
-    {id:'gym_curl_m',t:'Curl martillo — 3×12',g:'gym'},
-    {id:'d_creatina',t:'Creatina 3-5g (4:30 AM)',g:'diet'},
-    {id:'d_preent',t:'Pre-entreno: avena + plátano',g:'diet'},
-    {id:'d_postent',t:'Post-entreno: 4 huevos + tortillas',g:'diet'},
-    {id:'d_snack1',t:'Snack oficina: yogurt + fruta',g:'diet'},
-    {id:'d_comida',t:'Comida: pollo/carne + arroz/frijoles',g:'diet'},
-    {id:'d_snack2',t:'Snack: pan integral + cacahuate',g:'diet'},
-    {id:'d_cena',t:'Cena: proteína + carbo',g:'diet'},
-    {id:'h_agua',t:'2.5L agua mínimo',g:'habit'},
-    {id:'h_sueno',t:'Dormí 7-8 horas',g:'habit'},
-    {id:'h_silla',t:'Me levanté de la silla cada hora',g:'habit'},
-  ],
-  2:[
-    {id:'d_creatina',t:'Creatina 3-5g tomada',g:'diet'},
-    {id:'d_desayuno',t:'Desayuno con proteína',g:'diet'},
-    {id:'d_comida',t:'Comida con proteína + carbos',g:'diet'},
-    {id:'d_cena',t:'Cena con proteína',g:'diet'},
-    {id:'h_caminata',t:'Caminata 20-30 min',g:'habit'},
-    {id:'h_stretch',t:'Stretching 10 min',g:'habit'},
-    {id:'h_agua',t:'2.5L agua mínimo',g:'habit'},
-    {id:'h_sueno',t:'Dormí 7-8 horas',g:'habit'},
-  ],
-  3:[
-    {id:'gym_asistir',t:'Llegué al gym a las 5 AM',g:'gym'},
-    {id:'gym_sentadilla',t:'Sentadilla barra — 4×8-10',g:'gym'},
-    {id:'gym_prensa',t:'Prensa de pierna — 4×10-12',g:'gym'},
-    {id:'gym_ext_quad',t:'Extensión cuádriceps — 3×12-15',g:'gym'},
-    {id:'gym_curl_fem',t:'Curl femoral — 3×12',g:'gym'},
-    {id:'gym_peso_m',t:'Peso muerto rumano — 3×10',g:'gym'},
-    {id:'gym_gemelo',t:'Elevaciones gemelo — 4×15-20',g:'gym'},
-    {id:'d_creatina',t:'Creatina 3-5g (4:30 AM)',g:'diet'},
-    {id:'d_preent',t:'Pre-entreno: avena + plátano',g:'diet'},
-    {id:'d_postent',t:'Post-entreno: 4 huevos + tortillas',g:'diet'},
-    {id:'d_snack1',t:'Snack oficina: yogurt + fruta',g:'diet'},
-    {id:'d_comida',t:'Comida: pollo/carne + arroz/frijoles',g:'diet'},
-    {id:'d_snack2',t:'Snack: pan integral + cacahuate',g:'diet'},
-    {id:'d_cena',t:'Cena: proteína + carbo',g:'diet'},
-    {id:'h_agua',t:'2.5L agua mínimo',g:'habit'},
-    {id:'h_sueno',t:'Dormí 7-8 horas',g:'habit'},
-    {id:'h_silla',t:'Me levanté de la silla cada hora',g:'habit'},
-  ],
-  4:[
-    {id:'gym_asistir',t:'Llegué al gym a las 5 AM',g:'gym'},
-    {id:'gym_press_mil',t:'Press militar barra — 4×8-10',g:'gym'},
-    {id:'gym_elev_lat',t:'Elevaciones laterales — 4×12-15',g:'gym'},
-    {id:'gym_face_pull',t:'Face pull polea — 3×15',g:'gym'},
-    {id:'gym_elev_post',t:'Elevaciones posteriores — 3×12',g:'gym'},
-    {id:'gym_plancha',t:'Plancha — 3×40 seg',g:'gym'},
-    {id:'gym_crunch',t:'Crunch polea — 3×15',g:'gym'},
-    {id:'d_creatina',t:'Creatina 3-5g (4:30 AM)',g:'diet'},
-    {id:'d_preent',t:'Pre-entreno: avena + plátano',g:'diet'},
-    {id:'d_postent',t:'Post-entreno: 4 huevos + tortillas',g:'diet'},
-    {id:'d_snack1',t:'Snack oficina: yogurt + fruta',g:'diet'},
-    {id:'d_comida',t:'Comida: pollo/carne + arroz/frijoles',g:'diet'},
-    {id:'d_snack2',t:'Snack: pan integral + cacahuate',g:'diet'},
-    {id:'d_cena',t:'Cena: proteína + carbo',g:'diet'},
-    {id:'h_agua',t:'2.5L agua mínimo',g:'habit'},
-    {id:'h_sueno',t:'Dormí 7-8 horas',g:'habit'},
-    {id:'h_silla',t:'Me levanté de la silla cada hora',g:'habit'},
-  ],
-  5:[
-    {id:'d_creatina',t:'Creatina 3-5g tomada',g:'diet'},
-    {id:'d_desayuno',t:'Desayuno completo con proteína',g:'diet'},
-    {id:'d_comida',t:'Comida principal con proteína',g:'diet'},
-    {id:'d_cena',t:'Cena con proteína',g:'diet'},
-    {id:'h_agua',t:'2.5L agua mínimo',g:'habit'},
-    {id:'h_sueno',t:'Dormí 7-8 horas',g:'habit'},
-    {id:'e_prep',t:'Meal prep para próximos días',g:'extra'},
-  ],
-  6:[
-    {id:'d_creatina',t:'Creatina 3-5g tomada',g:'diet'},
-    {id:'d_desayuno',t:'Desayuno completo con proteína',g:'diet'},
-    {id:'d_comida',t:'Comida principal con proteína',g:'diet'},
-    {id:'d_cena',t:'Cena con proteína',g:'diet'},
-    {id:'h_agua',t:'2.5L agua mínimo',g:'habit'},
-    {id:'h_sueno',t:'Dormí 7-8 horas',g:'habit'},
-    {id:'e_prep',t:'Meal prep dominical (arroz + pollo + frijoles)',g:'extra'},
-    {id:'e_pesos',t:'Anoté mis pesos del gym esta semana',g:'extra'},
-  ]
-};
+let checkWeek=parseInt(localStorage.getItem('cw')||'1');
+let checkDay=todayDayIdx();
+let pesosDay=GYM_DAYS.includes(todayDayIdx())?todayDayIdx():GYM_DAYS[0];
+let medWeek=checkWeek;
 
-const EXERCISES = {
-  0:[
-    {id:'press_banca',name:'Press de Banca'},
-    {id:'press_inc',name:'Press Inclinado Mancuernas'},
-    {id:'aperturas',name:'Aperturas Polea'},
-    {id:'fondos',name:'Fondos Paralelas'},
-    {id:'ext_triceps',name:'Extensión Tríceps'},
-    {id:'press_frances',name:'Press Francés'},
-  ],
-  1:[
-    {id:'jalon',name:'Jalón al Pecho'},
-    {id:'remo_barra',name:'Remo con Barra'},
-    {id:'remo_mancuerna',name:'Remo Mancuerna'},
-    {id:'jalon_neutro',name:'Jalón Neutro'},
-    {id:'curl_barra',name:'Curl Barra Z'},
-    {id:'curl_martillo',name:'Curl Martillo'},
-  ],
-  3:[
-    {id:'sentadilla',name:'Sentadilla Libre'},
-    {id:'prensa',name:'Prensa de Pierna'},
-    {id:'ext_quad',name:'Extensión Cuádriceps'},
-    {id:'curl_femoral',name:'Curl Femoral'},
-    {id:'peso_muerto_r',name:'Peso Muerto Rumano'},
-    {id:'gemelo',name:'Elevaciones Gemelo'},
-  ],
-  4:[
-    {id:'press_militar',name:'Press Militar Barra'},
-    {id:'elev_lat',name:'Elevaciones Laterales'},
-    {id:'face_pull',name:'Face Pull Polea'},
-    {id:'elev_post',name:'Elevaciones Posteriores'},
-    {id:'plancha',name:'Plancha'},
-    {id:'crunch',name:'Crunch Polea'},
-  ]
-};
+function todayDayIdx(){const d=new Date().getDay();return d===0?6:d-1;}
+function ck(w,d,id){return localStorage.getItem(`m_w${w}_d${d}_${id}`)===''+'1';}
+function setCk(w,d,id,v){localStorage.setItem(`m_w${w}_d${d}_${id}`,v?'1':'0');}
+function gP(w,d,e,s){return localStorage.getItem(`p_w${w}_d${d}_${e}_s${s}`)||'';}
+function sP(w,d,e,s,v){localStorage.setItem(`p_w${w}_d${d}_${e}_s${s}`,v);}
+function gR(w,d,e,s){return localStorage.getItem(`r_w${w}_d${d}_${e}_s${s}`)||'';}
+function sR(w,d,e,s,v){localStorage.setItem(`r_w${w}_d${d}_${e}_s${s}`,v);}
+function gSets(w,d,e){return parseInt(localStorage.getItem(`sets_w${w}_d${d}_${e}`)||'3');}
+function sSets(w,d,e,v){localStorage.setItem(`sets_w${w}_d${d}_${e}`,v);}
+function gMed(w,f){return localStorage.getItem(`med_w${w}_${f}`)||'';}
+function sMed(w,f,v){localStorage.setItem(`med_w${w}_${f}`,v);}
+function gMeal(d,id){return localStorage.getItem(`meal_d${d}_${id}`)===''+'1';}
+function sMeal(d,id,v){localStorage.setItem(`meal_d${d}_${id}`,v?'1':'0');}
 
-const NOTIFS = [
-  {id:'creatina',icon:'💊',title:'Tomar creatina',time:'4:30 AM',h:4,m:30},
-  {id:'gym',icon:'🏋️',title:'Hora del gym',time:'5:00 AM',h:5,m:0},
-  {id:'snack1',icon:'🍎',title:'Snack oficina',time:'10:30 AM',h:10,m:30},
-  {id:'comida',icon:'🍗',title:'Comida principal',time:'2:00 PM',h:14,m:0},
-  {id:'snack2',icon:'🥜',title:'Snack vespertino',time:'5:30 PM',h:17,m:30},
-  {id:'cena',icon:'🌙',title:'Hora de cenar',time:'8:00 PM',h:20,m:0},
-  {id:'sueno',icon:'😴',title:'Preparar para dormir',time:'9:30 PM',h:21,m:30},
-];
+function startApp(){localStorage.setItem('ob','1');document.getElementById('s-onboard').classList.remove('active');document.getElementById('s-home').classList.add('active');document.getElementById('nb-home').classList.add('active');renderHome();}
 
-// ═══════════════════════════════════════════
-// STATE
-// ═══════════════════════════════════════════
-let currentScreen = 's-home';
-let checkDay = todayDayIdx();
-let checkWeek = 1;
-let pesosDay = todayDayIdx();
-let medWeek = 1;
-
-function todayDayIdx() {
-  const d = new Date().getDay();
-  return d === 0 ? 6 : d - 1;
-}
-
-function ck(week,day,id){ return localStorage.getItem(`m_w${week}_d${day}_${id}`) === '1'; }
-function setCk(week,day,id,v){ localStorage.setItem(`m_w${week}_d${day}_${id}`, v?'1':'0'); }
-function getPeso(week,day,exId,setN){ return localStorage.getItem(`p_w${week}_d${day}_${exId}_s${setN}`) || ''; }
-function setPeso(week,day,exId,setN,v){ localStorage.setItem(`p_w${week}_d${day}_${exId}_s${setN}`,v); }
-function getReps(week,day,exId,setN){ return localStorage.getItem(`r_w${week}_d${day}_${exId}_s${setN}`) || ''; }
-function setReps(week,day,exId,setN,v){ localStorage.setItem(`r_w${week}_d${day}_${exId}_s${setN}`,v); }
-function getSets(week,day,exId){ return parseInt(localStorage.getItem(`sets_w${week}_d${day}_${exId}`) || '3'); }
-function setSets(week,day,exId,v){ localStorage.setItem(`sets_w${week}_d${day}_${exId}`,v); }
-function getMed(week,field){ return localStorage.getItem(`med_w${week}_${field}`) || ''; }
-function setMed(week,field,v){ localStorage.setItem(`med_w${week}_${field}`,v); }
-
-// ═══════════════════════════════════════════
-// NAVIGATION
-// ═══════════════════════════════════════════
-function goTo(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  const map = {'s-home':'nb-home','s-check':'nb-check','s-pesos':'nb-pesos','s-medidas':'nb-medidas','s-dieta':'nb-dieta','s-config':'nb-config'};
-  if(map[id]) document.getElementById(map[id])?.classList.add('active');
-  currentScreen = id;
-  if(id==='s-check') renderCheck();
-  if(id==='s-pesos') renderPesos();
-  if(id==='s-medidas') renderMedidas();
-  if(id==='s-config') renderConfig();
-  if(id==='s-home') renderHome();
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const map={'s-home':'nb-home','s-check':'nb-check','s-pesos':'nb-pesos','s-medidas':'nb-medidas','s-dieta':'nb-dieta','s-config':'nb-config'};
+  if(map[id])document.getElementById(map[id])?.classList.add('active');
+  if(id==='s-check')renderCheck();
+  if(id==='s-pesos')renderPesos();
+  if(id==='s-medidas')renderMedidas();
+  if(id==='s-config')renderConfig();
+  if(id==='s-home')renderHome();
+  if(id==='s-dieta')renderDieta();
 }
 
-// ═══════════════════════════════════════════
-// HOME
-// ═══════════════════════════════════════════
-function renderHome() {
-  const h = new Date().getHours();
-  const greet = h < 12 ? 'BUENOS DÍAS' : h < 19 ? 'BUENAS TARDES' : 'BUENAS NOCHES';
-  document.getElementById('greetTime').textContent = greet;
-
-  const td = todayDayIdx();
-  document.getElementById('todayFocus').textContent = DAY_FOCUS[td];
-
-  // gym this week
-  let gymDone = 0;
-  GYM_DAYS.forEach(d => { if(ck(checkWeek,d,'gym_asistir')) gymDone++; });
-  document.getElementById('homeGym').textContent = gymDone+'/4';
-
-  // diet today
-  const todayChecks = CHECKS[td];
-  const dietItems = todayChecks.filter(c=>c.g==='diet');
-  const dietDone = dietItems.filter(c=>ck(checkWeek,td,c.id)).length;
-  const dietPct = dietItems.length ? Math.round(dietDone/dietItems.length*100) : 0;
-  document.getElementById('homeDiet').textContent = dietPct+'%';
-
-  // creatina today
-  document.getElementById('homeCreat').textContent = ck(checkWeek,td,'d_creatina') ? '✓' : '✗';
-  document.getElementById('homeCreat').style.color = ck(checkWeek,td,'d_creatina') ? 'var(--green)' : 'var(--red)';
-
-  // ring
-  let total=0,done=0;
-  for(let d=0;d<7;d++){
-    CHECKS[d].forEach(c=>{ total++; if(ck(checkWeek,d,c.id)) done++; });
+function calcStreak(){
+  let streak=0,best=parseInt(localStorage.getItem('bestStreak')||'0');
+  let d=todayDayIdx(),w=checkWeek;
+  for(let i=0;i<60;i++){
+    const cs=CHECKS[d],total=cs.length,done=cs.filter(c=>ck(w,d,c.id)).length;
+    if(done===total&&total>0)streak++;
+    else break;
+    d--;if(d<0){d=6;w--;}
+    if(w<1)break;
   }
-  const pct = total ? Math.round(done/total*100) : 0;
-  const circ = 169.6;
-  document.getElementById('ringFill').style.strokeDashoffset = circ - (circ*pct/100);
-  document.getElementById('ringPct').textContent = pct+'%';
-  document.getElementById('ringDesc').textContent = `${done} de ${total} tareas completadas`;
-
-  // goal bar
-  const peso = parseFloat(getMed(medWeek,'peso')) || 72;
-  const pct2 = Math.min(100, Math.max(0, (peso-72)/(80-72)*100));
-  document.getElementById('goalBar').style.width = pct2+'%';
-  document.getElementById('pesoActual').textContent = `Peso actual: ${peso} kg`;
+  if(streak>best){best=streak;localStorage.setItem('bestStreak',best);}
+  return{streak,best};
 }
 
-// ═══════════════════════════════════════════
-// CHECKLIST
-// ═══════════════════════════════════════════
-function renderCheck() {
-  document.getElementById('checkDateLabel').textContent = `SEMANA ${checkWeek}`;
-  // pills
-  const pills = document.getElementById('dayPills');
-  pills.innerHTML = '';
-  DAYS_ES.forEach((name,i) => {
-    const checks = CHECKS[i];
-    const done = checks.filter(c=>ck(checkWeek,i,c.id)).length;
-    const total = checks.length;
-    const isDone = done===total;
-    const pill = document.createElement('div');
-    pill.className = `day-pill${i===checkDay?' active':''}${isDone?' done':''}`;
-    pill.textContent = `${name} ${done}/${total}`;
-    pill.onclick = () => { checkDay=i; renderCheck(); };
-    pills.appendChild(pill);
+function renderHome(){
+  const h=new Date().getHours();
+  document.getElementById('greetTime').textContent=h<12?'BUENOS DÍAS':h<19?'BUENAS TARDES':'BUENAS NOCHES';
+  const td=todayDayIdx();
+  document.getElementById('todayFocus').textContent=DAY_FOCUS[td];
+  document.getElementById('obFocus').textContent=DAY_FOCUS[td];
+  const{streak,best}=calcStreak();
+  document.getElementById('streakNum').textContent=streak;
+  document.getElementById('streakBest').innerHTML=`MEJOR:<br>${best} días`;
+  let gymDone=0;
+  GYM_DAYS.forEach(d=>{if(ck(checkWeek,d,'gym_asistir'))gymDone++;});
+  document.getElementById('homeGym').textContent=gymDone+'/4';
+  const dC=CHECKS[td],dI=dC.filter(c=>c.g==='diet'),dD=dI.filter(c=>ck(checkWeek,td,c.id)).length;
+  document.getElementById('homeDiet').textContent=Math.round(dD/dI.length*100)+'%';
+  const creat=ck(checkWeek,td,'d_creatina');
+  document.getElementById('homeCreat').textContent=creat?'✓':'✗';
+  document.getElementById('homeCreat').style.color=creat?'var(--green)':'var(--red)';
+  let total=0,done=0;
+  for(let d=0;d<7;d++)CHECKS[d].forEach(c=>{total++;if(ck(checkWeek,d,c.id))done++;});
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById('ringFill').style.strokeDashoffset=169.6-(169.6*pct/100);
+  document.getElementById('ringPct').textContent=pct+'%';
+  document.getElementById('ringDesc').textContent=`${done} de ${total} tareas esta semana`;
+  document.getElementById('planFrac').textContent=checkWeek+' / 26';
+  const pp=Math.round(checkWeek/26*100);
+  document.getElementById('planFill').style.width=pp+'%';
+  document.getElementById('planPct').textContent=pp+'% completado';
+  document.getElementById('cfgWeek').textContent=checkWeek;
+  const peso=parseFloat(gMed(checkWeek,'peso'))||72;
+  document.getElementById('goalBar').style.width=Math.min(100,Math.max(0,(peso-72)/(80-72)*100))+'%';
+  document.getElementById('pesoActual').textContent='Actual: '+peso+' kg';
+  const pending=CHECKS[td].filter(c=>!ck(checkWeek,td,c.id)).length;
+  const bc=document.getElementById('badge-check');bc.textContent=pending;bc.classList.toggle('show',pending>0);
+  document.getElementById('badge-pesos').classList.toggle('show',GYM_DAYS.includes(td)&&!ck(checkWeek,td,'gym_asistir'));
+  document.getElementById('badge-dieta').classList.toggle('show',MEALS.filter(m=>gMeal(td,m.id)).length<MEALS.length);
+}
+
+function renderCheck(){
+  document.getElementById('checkDateLabel').textContent=`SEMANA ${checkWeek}`;
+  const pills=document.getElementById('dayPills');
+  pills.innerHTML='';
+  DAYS_ES.forEach((name,i)=>{
+    const cs=CHECKS[i],done=cs.filter(c=>ck(checkWeek,i,c.id)).length,total=cs.length;
+    const p=document.createElement('div');
+    p.className=`day-pill${i===checkDay?' active':''}${done===total?' done':''}`;
+    p.textContent=`${name} ${done}/${total}`;
+    p.onclick=()=>{checkDay=i;renderCheck();};
+    pills.appendChild(p);
   });
-
-  const content = document.getElementById('checkContent');
-  content.innerHTML = '';
-
-  const groups = {gym:{label:'🏋️ ENTRENAMIENTO',tag:'gym'},diet:{label:'🍽️ NUTRICIÓN',tag:'diet'},habit:{label:'💧 HÁBITOS',tag:'habit'},extra:{label:'⭐ EXTRAS',tag:'extra'}};
-  const dayChecks = CHECKS[checkDay];
-
-  Object.entries(groups).forEach(([gk,gv]) => {
-    const items = dayChecks.filter(c=>c.g===gk);
-    if(!items.length) return;
-    const done = items.filter(c=>ck(checkWeek,checkDay,c.id)).length;
-
-    const label = document.createElement('div');
-    label.className = 'section-label';
-    label.innerHTML = `${gv.label} <span style="color:var(--accent);margin-left:8px;">${done}/${items.length}</span>`;
-    content.appendChild(label);
-
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.style.padding = '4px 14px';
-
-    items.forEach(item => {
-      const checked = ck(checkWeek,checkDay,item.id);
-      const row = document.createElement('div');
-      row.className = `check-item${checked?' done':''}`;
-      row.innerHTML = `<div class="chk">${checked?'✓':''}</div><div class="chk-text">${item.t}</div><div class="tag tag-${item.g}">${item.g}</div>`;
-      row.onclick = () => {
-        setCk(checkWeek,checkDay,item.id,!checked);
-        renderCheck();
-        renderHome();
-      };
+  const content=document.getElementById('checkContent');
+  content.innerHTML='';
+  const cs=CHECKS[checkDay],allDone=cs.filter(c=>ck(checkWeek,checkDay,c.id)).length===cs.length;
+  if(allDone){
+    const b=document.createElement('div');
+    b.className='day-done-banner';
+    b.innerHTML=`<div style="font-size:28px;">🎉</div><div><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--green);letter-spacing:1px;">¡DÍA COMPLETADO!</div><div style="font-size:12px;color:var(--muted);">${DAYS_ES[checkDay]} — ${cs.length}/${cs.length} tareas ✓</div></div>`;
+    content.appendChild(b);
+  }
+  const groups={gym:{label:'🏋️ ENTRENAMIENTO'},diet:{label:'🍽️ NUTRICIÓN'},habit:{label:'💧 HÁBITOS'},extra:{label:'⭐ EXTRAS'}};
+  Object.entries(groups).forEach(([gk,gv])=>{
+    const items=CHECKS[checkDay].filter(c=>c.g===gk);
+    if(!items.length)return;
+    const done=items.filter(c=>ck(checkWeek,checkDay,c.id)).length;
+    const lbl=document.createElement('div');
+    lbl.className='section-label';
+    lbl.innerHTML=`${gv.label} <span style="color:var(--accent);margin-left:8px;">${done}/${items.length}</span>`;
+    content.appendChild(lbl);
+    const card=document.createElement('div');
+    card.className='card';card.style.padding='4px 14px';
+    items.forEach(item=>{
+      const checked=ck(checkWeek,checkDay,item.id);
+      const row=document.createElement('div');
+      row.className=`check-item${checked?' done':''}`;
+      row.innerHTML=`<div class="chk">${checked?'✓':''}</div><div class="chk-text">${item.t}</div><div class="tag tag-${item.g}">${item.g}</div>`;
+      row.onclick=()=>{setCk(checkWeek,checkDay,item.id,!checked);renderCheck();renderHome();};
       card.appendChild(row);
     });
     content.appendChild(card);
   });
-
-  // week nav
-  const nav = document.createElement('div');
-  nav.style.cssText = 'display:flex;gap:8px;margin-top:4px;';
-  nav.innerHTML = `
-    <button class="btn btn-outline" style="margin:0;font-size:13px;" onclick="checkWeek=Math.max(1,checkWeek-1);renderCheck();">← SEM ANT</button>
-    <button class="btn btn-outline" style="margin:0;font-size:13px;" onclick="checkWeek=Math.min(26,checkWeek+1);renderCheck();">SEM SIG →</button>
-  `;
+  const nav=document.createElement('div');
+  nav.style.cssText='display:flex;gap:8px;margin-top:4px;';
+  nav.innerHTML=`<button class="btn btn-outline" style="margin:0;font-size:13px;" onclick="checkWeek=Math.max(1,checkWeek-1);renderCheck();">← SEM ANT</button><button class="btn btn-outline" style="margin:0;font-size:13px;" onclick="checkWeek=Math.min(26,checkWeek+1);renderCheck();">SEM SIG →</button>`;
   content.appendChild(nav);
 }
 
-// ═══════════════════════════════════════════
-// PESOS
-// ═══════════════════════════════════════════
-function renderPesos() {
-  document.getElementById('pesosDay').textContent = `SEMANA ${checkWeek} — ${DAYS_ES[pesosDay]} — ${DAY_FOCUS[pesosDay]}`;
-
-  // pills (solo días de gym)
-  const pills = document.getElementById('pesosDayPills');
-  pills.innerHTML = '';
-  GYM_DAYS.forEach(i => {
-    const pill = document.createElement('div');
-    pill.className = `day-pill${i===pesosDay?' active':''}`;
-    pill.textContent = DAYS_ES[i];
-    pill.onclick = () => { pesosDay=i; renderPesos(); };
-    pills.appendChild(pill);
+function renderPesos(){
+  document.getElementById('pesosDay').textContent=`SEM ${checkWeek} — ${DAYS_ES[pesosDay]} — ${DAY_FOCUS[pesosDay]}`;
+  const pills=document.getElementById('pesosDayPills');
+  pills.innerHTML='';
+  GYM_DAYS.forEach(i=>{
+    const p=document.createElement('div');
+    p.className=`day-pill${i===pesosDay?' active':''}`;
+    p.textContent=DAYS_ES[i];p.onclick=()=>{pesosDay=i;renderPesos();};
+    pills.appendChild(p);
   });
-
-  const exList = document.getElementById('exerciseList');
-  exList.innerHTML = '';
-
-  const exs = EXERCISES[pesosDay] || [];
-  exs.forEach(ex => {
-    const numSets = getSets(checkWeek,pesosDay,ex.id);
-    // find best
-    let best = 0;
-    for(let s=0;s<numSets;s++){
-      const p = parseFloat(getPeso(checkWeek,pesosDay,ex.id,s)) || 0;
-      if(p>best) best=p;
-    }
-    // history (last 3 weeks)
-    let histHTML = '';
-    for(let w=Math.max(1,checkWeek-3);w<checkWeek;w++){
-      let wBest=0;
-      for(let s=0;s<6;s++){const p=parseFloat(getPeso(w,pesosDay,ex.id,s))||0;if(p>wBest)wBest=p;}
-      if(wBest) histHTML+=`<div class="history-row"><span>Sem ${w}</span><span>${wBest} kg</span></div>`;
-    }
-
-    const card = document.createElement('div');
-    card.className = 'ex-card';
-    card.innerHTML = `
-      <div class="ex-header" onclick="toggleEx('ex-body-${ex.id}')">
-        <div class="ex-name">${ex.name}</div>
-        <div class="ex-best">${best?best+' kg':'—'}</div>
-      </div>
-      <div class="ex-body" id="ex-body-${ex.id}">
-        <div id="sets-${ex.id}"></div>
-        <div style="text-align:right;margin-top:4px;">
-          <button class="add-set-btn" onclick="addSet('${ex.id}')">+ Serie</button>
-        </div>
-        ${histHTML?`<div class="history-mini"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-bottom:4px;">HISTORIAL</div>${histHTML}</div>`:''}
-      </div>
-    `;
+  const exList=document.getElementById('exerciseList');
+  exList.innerHTML='';
+  const exs=EXERCISES[pesosDay]||[];
+  if(!exs.length){exList.innerHTML=`<div class="card" style="text-align:center;padding:24px;color:var(--muted);">💤 Día de descanso — sin registro de pesos</div>`;return;}
+  exs.forEach(ex=>{
+    const numSets=gSets(checkWeek,pesosDay,ex.id);
+    let best=0;
+    for(let s=0;s<numSets;s++){const p=parseFloat(gP(checkWeek,pesosDay,ex.id,s))||0;if(p>best)best=p;}
+    let histHTML='';
+    for(let w=Math.max(1,checkWeek-3);w<checkWeek;w++){let wb=0;for(let s=0;s<6;s++){const p=parseFloat(gP(w,pesosDay,ex.id,s))||0;if(p>wb)wb=p;}if(wb)histHTML+=`<div class="history-row"><span>Sem ${w}</span><span>${wb} kg</span></div>`;}
+    const card=document.createElement('div');
+    card.className=`ex-card${best?' saved':''}`;
+    card.id=`ec-${ex.id}`;
+    card.innerHTML=`<div class="ex-header" onclick="toggleEx('exb-${ex.id}')"><div class="ex-name">${ex.name}</div><div class="ex-meta ${best?'has':'empty'}">${best?'✓ '+best+' kg':'toca para registrar'}</div></div><div class="ex-body" id="exb-${ex.id}"><div id="sets-${ex.id}"></div><div style="text-align:right;margin-top:4px;"><button class="add-set-btn" onclick="addSet('${ex.id}')">+ Serie</button></div>${histHTML?`<div class="history-mini"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-bottom:4px;">HISTORIAL</div>${histHTML}</div>`:''}</div>`;
     exList.appendChild(card);
     renderSets(ex.id);
   });
+}
 
-  if(!exs.length){
-    exList.innerHTML = `<div class="card" style="text-align:center;padding:24px;color:var(--muted);">💤 Día de descanso.<br>Sin registro de pesos.</div>`;
+function renderSets(exId){
+  const n=gSets(checkWeek,pesosDay,exId);
+  const c=document.getElementById(`sets-${exId}`);
+  if(!c)return;c.innerHTML='';
+  for(let s=0;s<n;s++){
+    const row=document.createElement('div');
+    row.className='set-row';
+    row.innerHTML=`<div class="set-label">SERIE ${s+1}</div><input type="number" class="num-input" placeholder="kg" step="2.5" value="${gP(checkWeek,pesosDay,exId,s)}" oninput="sP(${checkWeek},${pesosDay},'${exId}',${s},this.value);updCard('${exId}');"><input type="number" class="num-input" placeholder="reps" step="1" value="${gR(checkWeek,pesosDay,exId,s)}" oninput="sR(${checkWeek},${pesosDay},'${exId}',${s},this.value);">`;
+    c.appendChild(row);
   }
 }
 
-function renderSets(exId) {
-  const numSets = getSets(checkWeek,pesosDay,exId);
-  const container = document.getElementById(`sets-${exId}`);
-  if(!container) return;
-  container.innerHTML = '';
-  for(let s=0;s<numSets;s++){
-    const row = document.createElement('div');
-    row.className = 'set-row';
-    row.innerHTML = `
-      <div class="set-label">SERIE ${s+1}</div>
-      <input type="number" class="num-input" placeholder="kg" step="2.5" value="${getPeso(checkWeek,pesosDay,exId,s)}" oninput="setPeso(${checkWeek},${pesosDay},'${exId}',${s},this.value);renderPesos();">
-      <input type="number" class="num-input" placeholder="reps" step="1" value="${getReps(checkWeek,pesosDay,exId,s)}" oninput="setReps(${checkWeek},${pesosDay},'${exId}',${s},this.value);">
-    `;
-    container.appendChild(row);
-  }
+function updCard(exId){
+  const n=gSets(checkWeek,pesosDay,exId);let best=0;
+  for(let s=0;s<n;s++){const p=parseFloat(gP(checkWeek,pesosDay,exId,s))||0;if(p>best)best=p;}
+  const card=document.getElementById(`ec-${exId}`);
+  if(card){card.classList.toggle('saved',best>0);const m=card.querySelector('.ex-meta');if(m){m.textContent=best?'✓ '+best+' kg':'toca para registrar';m.className='ex-meta '+(best?'has':'empty');}}
 }
 
-function addSet(exId) {
-  const n = getSets(checkWeek,pesosDay,exId);
-  setSets(checkWeek,pesosDay,exId,n+1);
-  renderSets(exId);
-  renderPesos();
-}
+function addSet(exId){sSets(checkWeek,pesosDay,exId,gSets(checkWeek,pesosDay,exId)+1);renderSets(exId);}
+function toggleEx(id){document.getElementById(id)?.classList.toggle('open');}
 
-function toggleEx(id) {
-  const el = document.getElementById(id);
-  el.classList.toggle('open');
-}
-
-function savePesos() { showToast('✓ Sesión guardada'); }
-
-// ═══════════════════════════════════════════
-// MEDIDAS
-// ═══════════════════════════════════════════
-function changeMedWeek(dir) {
-  medWeek = Math.max(1,Math.min(26,medWeek+dir));
-  renderMedidas();
-}
-
-function renderMedidas() {
-  document.getElementById('medWeekLabel').textContent = `SEM ${medWeek}`;
-  ['Peso','Pecho','Cintura','Brazo'].forEach(m => {
-    const val = getMed(medWeek,m.toLowerCase());
-    document.getElementById(`mDisp${m}`).textContent = val || '—';
-    document.getElementById(`m${m}`).value = val;
-  });
-  renderWeightChart();
-}
-
-function saveMedidas() {
-  ['Peso','Pecho','Cintura','Brazo'].forEach(m => {
-    const val = document.getElementById(`m${m}`).value;
-    setMed(medWeek,m.toLowerCase(),val);
-    document.getElementById(`mDisp${m}`).textContent = val || '—';
-  });
-  renderWeightChart();
+function savePesos(){
+  const exs=EXERCISES[pesosDay]||[];let total=0;
+  exs.forEach(ex=>{const n=gSets(checkWeek,pesosDay,ex.id);for(let s=0;s<n;s++)if(parseFloat(gP(checkWeek,pesosDay,ex.id,s)))total++;});
+  document.getElementById('sfDetail').textContent=`${total} series registradas — ${DAYS_ES[pesosDay]}`;
+  document.getElementById('saveFeedback').classList.add('show');
+  setTimeout(()=>document.getElementById('saveFeedback').classList.remove('show'),2200);
   renderHome();
 }
 
-function renderWeightChart() {
-  const weeks = [];
-  for(let w=1;w<=8;w++){
-    const p = parseFloat(getMed(w,'peso'));
-    weeks.push(isNaN(p) ? null : p);
-  }
-  const valid = weeks.filter(v=>v!==null);
-  if(valid.length < 2) {
-    document.getElementById('chartLine').setAttribute('d','');
-    document.getElementById('chartArea').setAttribute('d','');
-    document.getElementById('chartDots').innerHTML = '';
-    document.getElementById('chartLabels').innerHTML = weeks.map((_,i)=>`<span>S${i+1}</span>`).join('');
-    return;
-  }
-  const min = Math.min(...valid) - 1;
-  const max = Math.max(...valid) + 1;
-  const W=300,H=80,pad=10;
-  const pts = weeks.map((v,i)=>{
-    const x = pad + (i/(weeks.length-1))*(W-pad*2);
-    const y = v===null ? null : H-pad - ((v-min)/(max-min))*(H-pad*2);
-    return {x,y,v};
-  });
-  let lineD='', areaD='', firstX=null, firstY=null;
-  pts.forEach((p,i)=>{
-    if(p.y===null) return;
-    if(!firstX){ firstX=p.x; firstY=p.y; lineD=`M${p.x},${p.y}`; areaD=`M${p.x},${H} L${p.x},${p.y}`; }
-    else { lineD+=` L${p.x},${p.y}`; areaD+=` L${p.x},${p.y}`; }
-    if(i===pts.filter(pp=>pp.y!==null).length-1+pts.findIndex(pp=>pp.y!==null)) areaD+=` L${p.x},${H} Z`;
-  });
-  // close area
-  const lastValid = [...pts].reverse().find(p=>p.y!==null);
-  if(lastValid) areaD += ` L${lastValid.x},${H} Z`;
+function changeMedWeek(dir){medWeek=Math.max(1,Math.min(26,medWeek+dir));renderMedidas();}
 
-  document.getElementById('chartLine').setAttribute('d',lineD);
-  document.getElementById('chartArea').setAttribute('d',areaD);
-  const dots = document.getElementById('chartDots');
-  dots.innerHTML = '';
-  pts.forEach(p=>{
-    if(p.y===null) return;
-    const circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
-    circle.setAttribute('cx',p.x); circle.setAttribute('cy',p.y);
-    circle.setAttribute('r','3'); circle.setAttribute('class','chart-dot');
-    dots.appendChild(circle);
+function renderMedidas(){
+  document.getElementById('medWeekLabel').textContent=`SEM ${medWeek}`;
+  ['Peso','Pecho','Cintura','Brazo'].forEach(m=>{
+    const val=gMed(medWeek,m.toLowerCase()),prev=gMed(Math.max(1,medWeek-1),m.toLowerCase());
+    document.getElementById(`mDisp${m}`).textContent=val||'—';
+    document.getElementById(`m${m}`).value=val;
+    const de=document.getElementById(`mDiff${m}`);
+    if(val&&prev&&medWeek>1){const diff=(parseFloat(val)-parseFloat(prev)).toFixed(1);const up=diff>0;de.textContent=(up?'+':'')+diff+(m==='Peso'?' kg':' cm');de.className='measure-diff '+(up?'diff-up':'diff-dn');}
+    else de.textContent='';
   });
-  document.getElementById('chartLabels').innerHTML = weeks.map((_,i)=>`<span>S${i+1}</span>`).join('');
+  renderWeightChart();
 }
 
-// ═══════════════════════════════════════════
-// CONFIG / NOTIFICACIONES
-// ═══════════════════════════════════════════
-function renderConfig() {
-  const list = document.getElementById('notifList');
-  list.innerHTML = '';
-  NOTIFS.forEach(n => {
-    const on = localStorage.getItem(`notif_${n.id}`) === '1';
-    const div = document.createElement('div');
-    div.className = 'notif-item';
-    div.innerHTML = `
-      <div class="notif-icon">${n.icon}</div>
-      <div class="notif-info">
-        <div class="notif-title">${n.title}</div>
-        <div class="notif-time">${n.time}</div>
-      </div>
-      <div class="toggle${on?' on':''}" id="tog-${n.id}" onclick="toggleNotif('${n.id}')"></div>
-    `;
+function saveMedidas(){
+  ['Peso','Pecho','Cintura','Brazo'].forEach(m=>{const v=document.getElementById(`m${m}`).value;sMed(medWeek,m.toLowerCase(),v);document.getElementById(`mDisp${m}`).textContent=v||'—';});
+  renderWeightChart();renderHome();showToast('✓ Medidas guardadas');
+}
+
+function renderWeightChart(){
+  const weeks=[];
+  for(let w=1;w<=8;w++){const p=parseFloat(gMed(w,'peso'));weeks.push(isNaN(p)?null:p);}
+  const valid=weeks.filter(v=>v!==null);
+  const ce=document.getElementById('chartEmpty'),ch=document.getElementById('weightChart');
+  if(valid.length<2){ce.style.display='block';ch.style.display='none';document.getElementById('chartLabels').innerHTML='';return;}
+  ce.style.display='none';ch.style.display='block';
+  const min=Math.min(...valid)-1,max=Math.max(...valid)+1,W=300,H=90,pad=12;
+  const pts=weeks.map((v,i)=>({x:pad+(i/(weeks.length-1))*(W-pad*2),y:v===null?null:H-pad-((v-min)/(max-min))*(H-pad*2)}));
+  let lineD='',areaD='',started=false,lv=null;
+  pts.forEach(p=>{if(p.y===null)return;if(!started){lineD=`M${p.x},${p.y}`;areaD=`M${p.x},${H} L${p.x},${p.y}`;started=true;}else{lineD+=` L${p.x},${p.y}`;areaD+=` L${p.x},${p.y}`;}lv=p;});
+  if(lv)areaD+=` L${lv.x},${H} Z`;
+  document.getElementById('chartLine').setAttribute('d',lineD);
+  document.getElementById('chartArea').setAttribute('d',areaD);
+  const dots=document.getElementById('chartDots');dots.innerHTML='';
+  pts.forEach(p=>{if(p.y===null)return;const c=document.createElementNS('http://www.w3.org/2000/svg','circle');c.setAttribute('cx',p.x);c.setAttribute('cy',p.y);c.setAttribute('r','3.5');c.setAttribute('class','chart-dot');dots.appendChild(c);});
+  document.getElementById('chartLabels').innerHTML=weeks.map((_,i)=>`<span>S${i+1}</span>`).join('');
+}
+
+function renderDieta(){
+  const td=todayDayIdx();let doneCount=0;
+  const ml=document.getElementById('mealList');ml.innerHTML='';
+  MEALS.forEach(meal=>{
+    const done=gMeal(td,meal.id);if(done)doneCount++;
+    const div=document.createElement('div');div.className=`menu-meal${done?' meal-done':''}`;
+    div.innerHTML=`<div class="meal-row"><div style="flex:1"><div class="meal-time-badge">${meal.time}</div><div class="meal-title">${meal.title}</div><div class="meal-desc">${meal.desc}</div><div class="meal-macros"><span class="macro-chip mc-p">${meal.p} prot</span><span class="macro-chip mc-c">${meal.c} carbs</span><span class="macro-chip mc-k">${meal.k} kcal</span></div></div><button class="meal-chk${done?' done':''}" onclick="toggleMeal(${td},'${meal.id}')">${done?'✓':'○'}</button></div>`;
+    ml.appendChild(div);
+  });
+  const pct=Math.round(doneCount/MEALS.length*100);
+  document.getElementById('dietProgBar').style.width=pct+'%';
+  document.getElementById('dietProgLbl').textContent=`${doneCount}/${MEALS.length}`;
+}
+
+function toggleMeal(day,id){sMeal(day,id,!gMeal(day,id));renderDieta();renderHome();}
+
+function renderConfig(){
+  document.getElementById('cfgWeek').textContent=checkWeek;
+  const list=document.getElementById('notifList');list.innerHTML='';
+  NOTIFS.forEach(n=>{
+    const on=localStorage.getItem(`notif_${n.id}`)===''+'1';
+    const div=document.createElement('div');div.className='notif-item';
+    div.innerHTML=`<div style="font-size:22px;flex-shrink:0">${n.icon}</div><div class="notif-info"><div class="notif-title">${n.title}</div><div class="notif-time">${n.time}</div></div><div class="toggle${on?' on':''}" onclick="toggleNotif('${n.id}')"></div>`;
     list.appendChild(div);
   });
 }
 
-function toggleNotif(id) {
-  const on = localStorage.getItem(`notif_${id}`) === '1';
-  localStorage.setItem(`notif_${id}`, on ? '0' : '1');
-  renderConfig();
-  if(!on) scheduleNotif(NOTIFS.find(n=>n.id===id));
-}
+function toggleNotif(id){const on=localStorage.getItem(`notif_${id}`)===''+'1';localStorage.setItem(`notif_${id}`,on?'0':'1');renderConfig();if(!on)scheduleNotif(NOTIFS.find(n=>n.id===id));}
+function scheduleNotif(n){if(Notification.permission!=='granted')return;const now=new Date(),t=new Date();t.setHours(n.h,n.m,0,0);if(t<=now)t.setDate(t.getDate()+1);setTimeout(()=>{new Notification(n.title,{body:'Plan Muscular Marco',icon:'icon-192.png'});scheduleNotif(n);},t-now);}
+function requestNotifPermission(){if(!('Notification' in window)){showToast('❌ Sin soporte');return;}Notification.requestPermission().then(p=>{if(p==='granted'){showToast('✓ Notificaciones activadas');NOTIFS.forEach(n=>{if(localStorage.getItem(`notif_${n.id}`)===''+'1')scheduleNotif(n);});}else showToast('❌ Permiso denegado');});}
 
-function scheduleNotif(n) {
-  if(Notification.permission !== 'granted') return;
-  const now = new Date();
-  const target = new Date();
-  target.setHours(n.h,n.m,0,0);
-  if(target <= now) target.setDate(target.getDate()+1);
-  const delay = target-now;
-  setTimeout(()=>{
-    new Notification(n.title,{body:'Plan Muscular Marco',icon:'icon-192.png'});
-    scheduleNotif(n); // reschedule daily
-  }, delay);
-}
+function showToast(msg='✓ Guardado'){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
 
-function requestNotifPermission() {
-  if(!('Notification' in window)){ showToast('❌ Sin soporte'); return; }
-  Notification.requestPermission().then(p => {
-    if(p==='granted'){
-      showToast('✓ Notificaciones activadas');
-      NOTIFS.forEach(n => { if(localStorage.getItem(`notif_${n.id}`)==='1') scheduleNotif(n); });
-    } else showToast('❌ Permiso denegado');
-  });
-}
-
-// ═══════════════════════════════════════════
-// UTILS
-// ═══════════════════════════════════════════
-function showToast(msg='✓ Guardado') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2000);
-}
-
-// ═══════════════════════════════════════════
-// PWA / SERVICE WORKER
-// ═══════════════════════════════════════════
 let deferredPrompt;
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  document.getElementById('installBanner').style.display = 'flex';
-});
-document.getElementById('installBtn').onclick = async () => {
-  if(deferredPrompt){
-    deferredPrompt.prompt();
-    const {outcome} = await deferredPrompt.userChoice;
-    if(outcome==='accepted') document.getElementById('installBanner').style.display='none';
-    deferredPrompt = null;
-  }
-};
-window.addEventListener('appinstalled',()=>{ document.getElementById('installBanner').style.display='none'; });
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBanner').style.display='flex';});
+document.getElementById('installBtn').onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();const{outcome}=await deferredPrompt.userChoice;if(outcome==='accepted')document.getElementById('installBanner').style.display='none';deferredPrompt=null;}};
+window.addEventListener('appinstalled',()=>{document.getElementById('installBanner').style.display='none';});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
+if(Notification.permission==='granted')NOTIFS.forEach(n=>{if(localStorage.getItem(`notif_${n.id}`)===''+'1')scheduleNotif(n);});
 
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('./sw.js').catch(()=>{});
-}
-
-// Reschedule notifs on load
-if(Notification.permission==='granted'){
-  NOTIFS.forEach(n=>{ if(localStorage.getItem(`notif_${n.id}`)==='1') scheduleNotif(n); });
-}
-
-// ═══════════════════════════════════════════
 // INIT
-// ═══════════════════════════════════════════
-pesosDay = GYM_DAYS.includes(todayDayIdx()) ? todayDayIdx() : GYM_DAYS[0];
-renderHome();
+if(localStorage.getItem('ob')){
+  document.getElementById('s-onboard').classList.remove('active');
+  document.getElementById('s-home').classList.add('active');
+  document.getElementById('nb-home').classList.add('active');
+  renderHome();
+} else {
+  document.getElementById('obFocus').textContent=DAY_FOCUS[todayDayIdx()];
+}
 </script>
 </body>
 </html>
