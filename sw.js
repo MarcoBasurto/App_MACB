@@ -1,4 +1,4 @@
-const CACHE = 'muscle-marco-v2';
+const CACHE = 'muscle-marco-v3';
 const FILES = ['./index.html', './manifest.json'];
 
 self.addEventListener('install', e => {
